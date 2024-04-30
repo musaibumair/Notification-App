@@ -40,23 +40,21 @@ class _EventDashBoardState extends State<EventDashBoard> {
         ],
       ),
       ),
-      body:StreamBuilder(
-        stream: databaseReference.onValue,
-        builder: (context, snapshot) {
-          if(!snapshot.hasData){
-            return CircularProgressIndicator();
-          }
-          else{
-            Map<dynamic,dynamic> map=snapshot.data!.snapshot.value as dynamic;
-            List<dynamic> list=[];
-            list=map.values.toList();
-            return ListView.builder(itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(list[index]["message"].toString()),
-              );
-            },itemCount: snapshot.data!.snapshot.children.length,
-            );
-          }
+      body: FirebaseAnimatedList(
+        query:databaseReference,
+        itemBuilder: (context, snapshot, animation, index) {
+          return snapshot.child("message").value.toString().contains("https://firebasestorage.googleapis.com/v0/b/notifyme-59aae.appspot.com/o/notificationImage%")?Container(
+              child: Column(
+                children: [Image.network(snapshot.child("message").value.toString()),
+                  Text(snapshot.child("date").value.toString()),
+                ],
+              )
+          ):Container(
+            child: ListTile(
+              title: Text(snapshot.child("message").value.toString()),
+              subtitle: Text(snapshot.child("date").value.toString()),
+            ),
+          );
         },
       ),
     );

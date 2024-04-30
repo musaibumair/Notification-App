@@ -39,8 +39,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
         print("the error is ${error}");
       });
     }
-
   }
+
+  final ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +52,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
           Expanded(flex: 8,
               child: Container(margin: EdgeInsets.all(10),
                 child: FirebaseAnimatedList(
-                  reverse: false,
                   query:databaseReference,
                 itemBuilder: (context, snapshot, animation, index) {
                   return snapshot.child("message").value.toString().contains("https://firebasestorage.googleapis.com/v0/b/notifyme-59aae.appspot.com/o/notificationImage%")?Container(
@@ -92,7 +93,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                            }
                               }, child: Text("Gallery")),
                               TextButton(onPressed: ()async{
-                                var image=await imagePicker.pickMedia();
+                                var image=await imagePicker.pickImage(source: ImageSource.camera);
                                 if(image!=null){
                                   file=File(image.path);
                                   uploadImage(file);
