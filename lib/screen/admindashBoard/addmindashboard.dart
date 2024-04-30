@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:notificationapp/screen/admindashBoard/notification.dart';
+import 'package:notificationapp/screen/login/loginscreen.dart';
 class AdminDashBoard extends StatefulWidget {
   const AdminDashBoard({Key? key}) : super(key: key);
 
@@ -23,7 +25,9 @@ class _appBarState extends State<AdminDashBoard> {
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(onPressed: (){
-                    }, icon:Icon(Icons.menu,color: Colors.white,)),
+                     FirebaseAuth.instance.signOut();
+                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+                    }, icon:Icon(Icons.logout,color: Colors.white,)),
                     CircleAvatar(child: Image(image: AssetImage("lib/assets/image/logo.png")),)
                   ],
                 ),
@@ -31,7 +35,7 @@ class _appBarState extends State<AdminDashBoard> {
               Container(margin: EdgeInsets.only(left: 40),
                   child: Text("DashBoard",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40,color: Colors.white),)),
               Container(margin: EdgeInsets.only(left: 40),
-                  child: Text("Leatest update",style: TextStyle(fontSize: 20,color: Colors.white54),)),
+                  child: Text(FirebaseAuth.instance.currentUser!.email.toString(),style: TextStyle(fontSize: 20,color: Colors.white54),)),
             ],
           ),
           ),
