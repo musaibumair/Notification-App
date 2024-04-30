@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "552993149208",
+    "project_id": "notifyme-59aae",
+    "storage_bucket": "notifyme-59aae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552993149208:android:96fdd84e6ae1430d170e6d",
+        "android_client_info": {
+          "package_name": "com.example.notificationapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmU32r9IKvQ_AQqPpfnFGd92iyEwKcp2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
