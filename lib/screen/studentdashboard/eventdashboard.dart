@@ -14,6 +14,7 @@ class EventDashBoard extends StatefulWidget {
 
 class _EventDashBoardState extends State<EventDashBoard> {
   var databaseReference=FirebaseDatabase.instance.ref("Message");
+  Color color=Color.fromRGBO(171, 252, 174, 1.0);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,22 +44,36 @@ class _EventDashBoardState extends State<EventDashBoard> {
                 ),
         ),
       ),
-      body: FirebaseAnimatedList(
-        query:databaseReference,
-        itemBuilder: (context, snapshot, animation, index) {
-          return snapshot.child("message").value.toString().contains("https://firebasestorage.googleapis.com/v0/b/notifyme-59aae.appspot.com/o/notificationImage%")?Container(
-              child: Column(
-                children: [Image.network(snapshot.child("message").value.toString()),
-                  Text(snapshot.child("date").value.toString()),
-                ],
-              )
-          ):Container(
-            child: ListTile(
-              title: Text(snapshot.child("message").value.toString()),
-              subtitle: Text(snapshot.child("date").value.toString()),
-            ),
-          );
-        },
+      body: Container(margin: EdgeInsets.all(10),
+        child: FirebaseAnimatedList(
+          query:databaseReference,
+          itemBuilder: (context, snapshot, animation, index) {
+            if(snapshot.child("messageType").value.toString()=='alert'){
+              color=Color.fromRGBO(248, 125, 125, 1.0);
+            }
+            else if(snapshot.child("messageType").value.toString()=='timeLimited'){
+              color=Color.fromRGBO(165, 187, 215, 1.0);
+            }
+            else{
+              color=Color.fromRGBO(171, 252, 174, 1.0);
+            }
+            return snapshot.child("message").value.toString().contains("https://firebasestorage.googleapis.com/v0/b/notifyme-59aae.appspot.com/o/notificationImage%")?Container(
+                child: Column(
+                  children: [Image.network(snapshot.child("message").value.toString()),
+                    Text(snapshot.child("date").value.toString()),
+                  ],
+                )
+            ):Container(
+              margin: EdgeInsets.only(bottom: 10),
+              decoration: BoxDecoration(color: color,
+              borderRadius: BorderRadius.circular(20)),
+              child: ListTile(
+                title: Text(snapshot.child("message").value.toString()),
+                subtitle: Text(snapshot.child("date").value.toString()),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
