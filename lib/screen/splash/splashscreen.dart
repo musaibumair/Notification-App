@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
           return AdminDashBoard();
         },)),);
       }
-      else if(user!.email.toString().contains("pu.edu.pk")){
+      else if(user!.email.toString().contains("pujc.edu.pk")){
         Timer(Duration(seconds: 3),() => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
           return BottomNabBarforTeacher();
         },)),);

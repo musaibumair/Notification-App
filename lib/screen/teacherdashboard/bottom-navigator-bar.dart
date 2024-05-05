@@ -1,11 +1,10 @@
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
-import 'package:notificationapp/screen/studentdashboard/classesdashboard.dart';
+import 'package:notificationapp/screen/admindashBoard/teacher-discussion.dart';
 import 'package:notificationapp/screen/studentdashboard/eventdashboard.dart';
 import 'package:notificationapp/screen/studentdashboard/groupdashboard.dart';
-import 'package:notificationapp/screen/teacherdashboard/teacherdashboard.dart';
-
+import 'package:notificationapp/screen/teacherdashboard/create-group.dart';
 
 class BottomNabBarforTeacher extends StatefulWidget {
   const BottomNabBarforTeacher({super.key});
@@ -16,15 +15,17 @@ class BottomNabBarforTeacher extends StatefulWidget {
 
 class _BottomNabBarforTeacherState extends State<BottomNabBarforTeacher> {
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
-  int currentIndex=0;
-  List Screen=[
-    NotificationScreen(),
-    ClassesDashBoard(),
-    GroupDashBoard()
+  int currentIndex = 0;
+  List Screen = [
+    EventDashBoardForStudent(),
+    GroupCreate(),
+    TeacherDiscussion()
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(246, 235, 235, 1.0),
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
         index: 0,
@@ -39,7 +40,7 @@ class _BottomNabBarforTeacherState extends State<BottomNabBarforTeacher> {
           ),
           CurvedNavigationBarItem(
             child: Icon(Icons.group),
-            label: 'Groups',
+            label: 'Chat',
           ),
         ],
         color: Colors.white,

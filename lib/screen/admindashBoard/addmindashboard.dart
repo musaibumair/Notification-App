@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notificationapp/screen/admindashBoard/notification.dart';
+import 'package:notificationapp/screen/admindashBoard/teacher-discussion.dart';
 import 'package:notificationapp/screen/login/loginscreen.dart';
 class AdminDashBoard extends StatefulWidget {
   const AdminDashBoard({Key? key}) : super(key: key);
@@ -58,10 +59,14 @@ class _appBarState extends State<AdminDashBoard> {
                     child: Icon(Icons.notifications_active,size: 90,)
                   ),
                 ),
-                Container(width:120,
-                  height: 120,
-                  margin: EdgeInsets.only(top:20,right: 20,),
-                  decoration:BoxDecoration(color: Colors.blue,borderRadius: BorderRadius.all(Radius.circular(20))),
+                InkWell(onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => TeacherDiscussion(),));
+                },
+                  child: Container(width:120,
+                    height: 120,
+                    margin: EdgeInsets.only(top:20,right: 20,),
+                    decoration:BoxDecoration(color: Colors.blue,borderRadius: BorderRadius.all(Radius.circular(20))),
+                  ),
                 ),
               ],
             ),

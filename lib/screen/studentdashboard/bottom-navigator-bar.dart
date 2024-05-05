@@ -17,7 +17,7 @@ class _BottomNabBarState extends State<BottomNabBar> {
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   int currentIndex=0;
   List Screen=[
-    EventDashBoard(),
+    EventDashBoardForStudent(),
     ClassesDashBoard(),
     GroupDashBoard()
   ];

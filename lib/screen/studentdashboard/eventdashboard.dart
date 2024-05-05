@@ -5,19 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:notificationapp/screen/login/loginscreen.dart';
 import 'package:notificationapp/screen/signup/signup.dart';
 
-class EventDashBoard extends StatefulWidget {
-  const EventDashBoard({Key? key}) : super(key: key);
+class EventDashBoardForStudent extends StatefulWidget {
+  const EventDashBoardForStudent({Key? key}) : super(key: key);
 
   @override
-  State<EventDashBoard> createState() => _EventDashBoardState();
+  State<EventDashBoardForStudent> createState() => _EventDashBoardForStudentState();
 }
 
-class _EventDashBoardState extends State<EventDashBoard> {
+class _EventDashBoardForStudentState extends State<EventDashBoardForStudent> {
   var databaseReference=FirebaseDatabase.instance.ref("Message");
   Color color=Color.fromRGBO(171, 252, 174, 1.0);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(246, 235, 235, 1.0),
         appBar: AppBar(
       title: Text("Event Notification"),
     ),
